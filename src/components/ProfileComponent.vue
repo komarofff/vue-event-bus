@@ -8,6 +8,7 @@
     </div>
   </div>
   <button @click="sendToApp">send emit to App</button>
+  <button @click="sendBus">send bus to App</button>
 </template>
 
 <script>
@@ -25,6 +26,9 @@ export default {
   methods:{
     sendToApp(){
       this.$emit('getDataFromComponent','I`m data from component')
+    },
+    sendBus(){
+      this.emitter.emit('busFromComponent','data from bus ')
     }
   },
   created() {

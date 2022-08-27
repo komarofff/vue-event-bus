@@ -2,6 +2,7 @@
   <div class="container">
 <ProfileComponent @getDataFromComponent="showDataFromComponent"></ProfileComponent>
     <p>data= {{data}} </p>
+    <p>Busdata= {{busData}} </p>
     <div id="edit__profile">
       <h2>Enter your details below:</h2>
       <form @submit.prevent="handleSubmit">
@@ -31,8 +32,14 @@ export default {
         name: '',
         email: ''
       },
-      data: ''
+      data: '',
+      busData:''
     }
+  },
+  created() {
+    this.emitter.on('busFromComponent',(el)=>{
+      this.busData = el
+    })
   },
   methods: {
     showDataFromComponent(val){
