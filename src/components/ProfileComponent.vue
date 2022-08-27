@@ -4,6 +4,7 @@
     <div>
       <p>Name: {{name}}</p>
       <p>Email: {{ email }}</p>
+      <p>Goal - {{goal}}</p>
     </div>
   </div>
 </template>
@@ -15,13 +16,17 @@ export default {
   data() {
     return {
       name: '',
-      email: ''
+      email: '',
+      goal:''
     }
   },
   created() {
     this.emitter.on('form-submitted', ({ name, email}) => {
       this.name = name;
       this.email = email
+    })
+    this.emitter.on('goal-sender',(goal)=>{
+      this.goal = goal
     })
   },
   beforeDestroy() {

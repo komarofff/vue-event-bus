@@ -17,6 +17,7 @@
       </form>
     </div>
   </div>
+  <button @click="sendGoal"> send goal to component</button>
 </template>
 
 <script>
@@ -37,6 +38,9 @@ export default {
       //this.$eventBus.$emit('form-submitted', this.user)
       this.emitter.emit('form-submitted', this.user)
       this.user = {}
+    },
+    sendGoal(){
+      this.emitter.emit('goal-sender','To be a senior developer ')
     }
   },
   components: {
