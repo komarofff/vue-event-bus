@@ -5,8 +5,8 @@ in main.js import that library and create an instance of that emitter and define
 Installation :
 
 npm install --save mitt
-Usage :
 
+main.js:
 import { createApp } from 'vue'
 import App from './App.vue'
 import mitt from 'mitt';
@@ -14,6 +14,8 @@ const emitter = mitt();
 const app = createApp(App);
 app.config.globalProperties.emitter = emitter;
 app.mount('#app');
+
+
 in header emit the toggle-sidebar event with some payload :
 
 <template>
