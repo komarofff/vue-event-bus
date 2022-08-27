@@ -1,15 +1,46 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+<ProfileComponent></ProfileComponent>
+
+    <div id="edit__profile">
+      <h2>Enter your details below:</h2>
+      <form @submit.prevent="handleSubmit">
+        <div class="form-field">
+          <label>Name:</label>
+          <input type="text" v-model="user.name" />
+        </div>
+        <div class="form-field">
+          <label>Email:</label>
+          <input type="text" v-model="user.email" />
+        </div>
+        <button>Submit</button>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ProfileComponent from "@/components/ProfileComponent";
 
 export default {
   name: 'App',
+  data(){
+    return{
+      user: {
+        name: '',
+        email: ''
+      }
+    }
+  },
+  methods: {
+    handleSubmit() {
+      //this.$eventBus.$emit('form-submitted', this.user)
+      this.emitter.emit('form-submitted', this.user)
+      this.user = {}
+    }
+  },
   components: {
-    HelloWorld
+   ProfileComponent
   }
 }
 </script>
