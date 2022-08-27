@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-<ProfileComponent></ProfileComponent>
-
+<ProfileComponent @getDataFromComponent="showDataFromComponent"></ProfileComponent>
+    <p>data= {{data}} </p>
     <div id="edit__profile">
       <h2>Enter your details below:</h2>
       <form @submit.prevent="handleSubmit">
@@ -17,7 +17,7 @@
       </form>
     </div>
   </div>
-  <button @click="sendGoal"> send goal to component</button>
+  <button @click="sendGoal" > send goal to component</button>
 </template>
 
 <script>
@@ -30,10 +30,14 @@ export default {
       user: {
         name: '',
         email: ''
-      }
+      },
+      data: ''
     }
   },
   methods: {
+    showDataFromComponent(val){
+      this.data = val
+    },
     handleSubmit() {
       //this.$eventBus.$emit('form-submitted', this.user)
       this.emitter.emit('form-submitted', this.user)

@@ -7,17 +7,24 @@
       <p>Goal - {{goal}}</p>
     </div>
   </div>
+  <button @click="sendToApp">send emit to App</button>
 </template>
 
 <script>
 
 export default {
   name: "ProfileComponent",
+  emits:['getDataFromComponent'],
   data() {
     return {
       name: '',
       email: '',
       goal:''
+    }
+  },
+  methods:{
+    sendToApp(){
+      this.$emit('getDataFromComponent','I`m data from component')
     }
   },
   created() {
@@ -32,6 +39,7 @@ export default {
   beforeDestroy() {
     this.emitter.off('form-submitted');
   },
+
 }
 </script>
 
